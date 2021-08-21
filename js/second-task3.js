@@ -5,15 +5,15 @@ const users = [
   { name: "Lux", active: false },
 ];
 
-const toggleUserState = async (allUsers, userName) => {
+const toggleUserState = (allUsers, userName) => {
   const updatedUsers = allUsers.map((user) =>
     user.name === userName ? { ...user, active: !user.active } : user
   );
 
-  return updatedUsers;
+  return Promise.resolve(updatedUsers);
 };
 
 // const logger = (updatedUsers) => console.table(updatedUsers);
 
-console.log(toggleUserState(users, "Mango"));
-console.log(toggleUserState(users, "Lux"));
+toggleUserState(users, "Mango").then((result) => console.log(result));
+toggleUserState(users, "Lux").then((result) => console.log(result));
